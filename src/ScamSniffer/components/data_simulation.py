@@ -1,16 +1,6 @@
 import random
 import uuid
 import csv
-import os
-from utils.common import read_yaml
-from pathlib import Path
-# Configurations
-NUM_POSTS = 1000
-output_dir = read_yaml(Path("config.yaml"))
-OUTPUT_FILE = os.path.join(output_dir, "simulated_fake_job_posts.csv")
-os.makedirs(output_dir, exist_ok=True)  
-
-
 
 greetings = [
     "Hi All,", "Hii Everyone,", "Hello Connections,", "Hiring Alert ", "We’re hiring!"
@@ -164,11 +154,20 @@ def generate_job_post():
 
     return random.choice(templates).strip()
 
+def generate_dataset(OUTPUT_FILE, NUM_POSTS):
+    """
+        args:
+            OUTPUT_FILE: path of csv file to be created
+            NUM_POSTS: number of fake posts to be generated
 
-# Write CSV
-with open(OUTPUT_FILE, mode='w', newline='', encoding='utf-8') as csvfile:
-    writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-    writer.writerow(["post_id", "content", "fraudulent"])
-    for i in range(1, NUM_POSTS + 1):
-        post = generate_job_post()
-        writer.writerow([i, post, 1])
+        Returns:
+            null
+    """
+
+    # Write CSV
+    with open(OUTPUT_FILE, mode='w', newline='', encoding='utf-8') as csvfile:
+        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
+        writer.writerow(["post_id", "description", "fraudulent"])
+        for i in range(1, NUM_POSTS + 1):
+            post = generate_job_post()
+            writer.writerow([i, post, 1])

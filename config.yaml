@@ -1,4 +1,19 @@
+root_dir: artifacts
 
 data_ingestion:
-  root_dir: artifacts/data_ingestion
-  unzip_dir: artifacts/data_ingestion
+  root_dir: artifacts\data_ingestion
+  unzip_dir: artifacts\data_ingestion
+  kaggle_dataset_link: shivamb\real-or-fake-fake-jobposting-prediction
+  simulated_dataset: artifacts\data_ingestion\simulated_fake_job_posts.csv
+
+data_transformation:
+  root_dir: artifacts\data_transformation
+  kaggle_dataset: artifacts\data_ingestion\fake_job_postings.csv
+  simulated_dataset: artifacts\data_ingestion\simulated_fake_job_posts.csv
+  
+model_trainer:
+  root_dir: artifacts\model_trainer
+  feature_files: artifacts\data_transformation
+
+model_evaluator:
+  root_dir: artifacts\model_evaluator
